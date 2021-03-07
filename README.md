@@ -27,59 +27,51 @@ That means we need to use queue instead of stack here.
 
 ## QUESTION 3
 
-Ο BFS στην ουσία είναι UCS με g(n) = depth(n).
-Δηλαδή ο BFS ψάχνει πρώτα τους κόμβους με το μικρότερο depth.
-Άρα πάλι έχουμε queue αλλά με priority το κόστος και όχι το depth.
-Ο κώδικας είναι πάλι ο ίδιος απλά αλλάζει η δομή.
-Και έχει την μικρή ιδιαιτερότητα ότι το κόστος ανάλογα πότε θα συναντήσουμε τον κόμβο
-και από ποιόν θα ερχόμαστε μπορεί να διαφέρει ενώ το depth (πάντα παραμένει το ίδιο)
-άρα προσθέτουμε μία if που ελέγχει να δεί στους κόμβους που έχουμε μέσα αν το νέο 
-κόστος που βρήκαμε για αυτούς αν είναι μικρότερο για να το αλλάξουμε αλλιώς το
-αφήνουμε ως έχει.
-
 BFS is bassically UCS with g(n) = depth(n).
 That is because BFS searches first the nodes with the smallest depth.
 So again we have queue **but** with priority the cost and not the depth.
 
 This change has the small peculiarity that the cost depending on when we meet the node
 and from whom we will come may differ while the depth always remains the same.
-So we add an if statement that checks to see in the nodes we have inside, if the new
-cost we found for them if it is lower to change it otherwise
-we leave as it is.
+So we add an if statement that checks to see in the nodes we have inside have greater new
+cost than the one they had before. If they had we change the cost otherwise we leave as it is.
 
 > The code remains the same expect from the data structure again.
 
-
+---
 
 ## QUESTION 4
 
-Ο A* είναι και αυτός παρόμοιος με τον UCS αλλά είναι ποιο ‘’έξυπνος’’.
-Ο Α* χρησιμοποιεί μία συνάρτηση για να υπολογίσει καλύτερα το priority. Με τον τύπο f(n)
-= g(n) + h(n).
-f(n) το priority που θα χρησιμοποιήσουμε.
-g(n) = το κόστος που είχαμε πριν
-Η h(n) λέγεται heuristic ( ευρευτική ) συνάρτηση. Και μπορεί να είναι οποιαδήποτε
-συνάρτηση μπορεί να μας βοηθήσει να κάνουμε το Priority Ποιο κοντά στην
-πραγματικότητα.
-Άρα πάλι έχουμε queue με priority το κόστος + το αποτέλεσμα της ευρετικής.
-Ο κώδικας είναι παρόμοιος. Αλλά δεν ασχολιόμαστε με κανένα κόμβο που έχουμε
-ξαναεπισκευτεί γιατί σημαίνει ότι για να τον έχουμε επισκευτεί σημαίνει ότι ποιο πριν
-ήμασταν στο ίδιο σημείο με μικρότερο συνολικό κόστος. Άρα άσκοπα θα προσωρήσουμε.
-Οπότε πάμε στην επόμενη επανάληψη.
+A* is also similar to UCS but it's "smarter".
+A* uses a function to better calculate the priority.
+With the formula f(n) = g(n) + h(n).
+> f(n) the priority we will use.
+
+> g(n) the cost we had before.
+
+> h(n) is called a heuristic function.
+>> And it can be any function that can help us make priority as closer to reality.
+
+So again we have queue with priority cost + the result of the heuristic.
+The code is similar. But we do not deal with any node we have
+re-visited because that means we were in the same spot with lower total cost.
+So we will move on unnecessarily.
+That's why we need to proceed to the next iteration.
+
+---
 
 ## QUESTION 5
 
-Στο initialize φτιάχνουμε μία λίστα με tuples για να κρατήσουμε τις μια
-μη visited γωνίες.
-Στο getStartState απλά γυρνάμε το την αρχική θέση μαζί με τις γωνίες
-που δεν έχουμε επισκεφτεί.
-Για να έχουμε φτάσει στον στόχο μας σε ένα state θα πρέπει αυτό το
-state να μην έχει δίπλα του στο tuple γωνίες(σημαίνει ότι τις
-επισκέφτηκε όλες)
-Και για να πάρουμε τους succesors θα κάνουμε έναν έλεγχο για κάθε
-πιθανή επιτρεπόμενη κίνηση και θα της επιστρεψουμε και βέβαια θα
-κοιτάξουμε αν κάποιες από αυτές τις κινήσεις καταλήγει σε γωνία για να
-την αφαιρέσουμε.
+In initialize we make a list of tuples to keep the not visited corners.
+At getStartState we simply return it to its original position along with the corners
+that we have not visited.
+In order to reach our goal in a state we need this
+state not to have corners next to it in the tuple (means that it has visited them all)
+And to get the succesors we will do a check for each
+possible allowed movement and we will return those movement without those
+that leads to a corner.
+
+---
 
 ## QUESTION 6
 
@@ -88,15 +80,23 @@ state να μην έχει δίπλα του στο tuple γωνίες(σημα�
 πλευρά για να πάω στην άλλη γωνία και μετά απλά ακολουθώ τις πλευρές αν δεν υπήρχαν
 οι τοίχοι να με εμποδίσουν( αυτή η λογική είναι η καλύτερη περίπτωση).
 
+I choose manhattanDistance as heuristic from util.py.
+If I go to the corner closest to me then I can just follow the smaller side to go
+to the other corner and then just follow the sides.
+If there wasn't any walls blocking this would be the best case.
+
+---
+
 ## QUESTION 7
 
-Χρησιμοποιώ την mazeDistance στο searchAgents.py.
-Θα βρούμε απλά την απόσταση μας από κάθε φαγητό και θα επιστρέψουμε το μέγιστο
-αυτών τον αποστάσεων. Οπότε κάθε φορά αποθηκεύονται οι κόμβοι στην ουρά με Priority
-το μεγαλύτερο που είναι δυνατόν. Η ουρά θα βγάλει τον κόμβο με το μικρότερο αυτών τον
-μεγαλύτερων άρα κάθε φορά κάνουμε το καλύτερο από τις χειρότερες επιλογές.
+I use mazeDistance in searchAgents.py.
+We will simply find our distance from each food and return the maximum of
+these distances. So each time the nodes in the queue are stored with the largest possible priority.
+The queue will take out the node with the smallest of those maximum priorities so every time we make the best of the worst choices.
+
+---
 
 ## QUESTION 8
 
-Απλά καλούμε τον astar(με το πρόβλημα) για να βρεί το μονοπάτι για το ποιο κοντινό
-φαγητό. Δεν έχει σημασία ποια συνάρτηση θα καλέσουμε Α* ή UCS ή BFS.
+We just call the A* (with the problem) to find the path to the closest food.
+> It does not matter which function we call A* or UCS or BFS.
