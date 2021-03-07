@@ -75,11 +75,6 @@ that leads to a corner.
 
 ## QUESTION 6
 
-Επιλέγω σαν heuristic την manhattanDistance στο util.py.
-Αν πάω στην ποιο κοντινή μου γωνία μετά απλά μπορώ να ακολουθήσω την μικρότερη
-πλευρά για να πάω στην άλλη γωνία και μετά απλά ακολουθώ τις πλευρές αν δεν υπήρχαν
-οι τοίχοι να με εμποδίσουν( αυτή η λογική είναι η καλύτερη περίπτωση).
-
 I choose manhattanDistance as heuristic from util.py.
 If I go to the corner closest to me then I can just follow the smaller side to go
 to the other corner and then just follow the sides.
@@ -93,7 +88,7 @@ I use mazeDistance in searchAgents.py.
 We will simply find our distance from each food and return the maximum of
 these distances. So each time the nodes in the queue are stored with the largest possible priority.
 The queue will take out the node with the smallest of those maximum priorities so every time we make the best of the worst choices.
-
+8
 ---
 
 ## QUESTION 8
