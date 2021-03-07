@@ -1,25 +1,31 @@
-# This was an exercise that i did on a class Artificial Intelligence in University
+# This project was made during my studies in UOA University and especially for the course Artificial Intelligence 1.
+
 ---
 
-## **QUESTION 1**
+## QUESTION 1
 
-Τον αλγόριθμο DFS τον υλοποίησα με stack αφού θέλουμε να πάμε πρώτα σε βάθος, διότι
-η λογική του stack είναι LIFO (LAST-IN FIRST-OUT).
-Χρησιμοποιώ από το util.py την έτοιμη stack και βάζω το αρχικο state του προβλήματος
-μέσα. Επίσης φτιάχνω και δύο λίστες μία για να κρατάω του κόμβους που έχω επισκευτείκ
-και μία για να κρατάω το path.
-H λογική στην while είναι ότι βγάζω το πρώτο στοιχείο από το stack δηλαδή αυτό που
-μπήκε τελευταίο, τσεκάρω να δω αν φτάσαμε στον στόχο, αποθηκεύω ότι επισκέφτηκα
-αυτόν τον κόμβο, βρίσκω τους επόμενους κόμβους από αυτόν τον κόμβο και αν δεν τους
-έχω ή\δη επισκεφτεί τους βάζω στο stack.
+I created the DFS algorithm using stack because DFS logic is LIFO (LAST-IN FIRST-OUT).
+I am using from util.py the already implemented stack and i insert the initial state of the problem.
+I also create 2 lists. One to hold the nodes that i have visit and one to hold the path.
+The logic in the while is:
+- remove the first element from the stack.
+> that is the one that got inserted last.
+- check to see if we reached the goal.
+- store that we visited this node.
+- find the next nodes from these node.
+- if i have not visited them yet put them to the stack.
 
-## **QUESTION 2**
+---
 
-Η λογική εδώ είναι ίδια με την DFS αλλά o BFS είναι πρώτα σε πλάτος δηλαδή FIFO (FIRSTIN FIRST-OUT).
-FIFO δηλαδή υλοποιείτε με queue. Ο κώδικας είναι ίδιος με του DFS απλά
-αλλάζει η δομή.
+## QUESTION 2
 
-## **QUESTION 3**
+The logic here is the same with DFS but BFS is FIFO (FIRST-IN FIRST-OUT).
+That means we need to use queue instead of stack here.
+> But the code remains the same expect from the data structure.
+
+---
+
+## QUESTION 3
 
 Ο BFS στην ουσία είναι UCS με g(n) = depth(n).
 Δηλαδή ο BFS ψάχνει πρώτα τους κόμβους με το μικρότερο depth.
@@ -31,7 +37,21 @@ FIFO δηλαδή υλοποιείτε με queue. Ο κώδικας είναι 
 κόστος που βρήκαμε για αυτούς αν είναι μικρότερο για να το αλλάξουμε αλλιώς το
 αφήνουμε ως έχει.
 
-## **QUESTION 4**
+BFS is bassically UCS with g(n) = depth(n).
+That is because BFS searches first the nodes with the smallest depth.
+So again we have queue **but** with priority the cost and not the depth.
+
+This change has the small peculiarity that the cost depending on when we meet the node
+and from whom we will come may differ while the depth always remains the same.
+So we add an if statement that checks to see in the nodes we have inside, if the new
+cost we found for them if it is lower to change it otherwise
+we leave as it is.
+
+> The code remains the same expect from the data structure again.
+
+
+
+## QUESTION 4
 
 Ο A* είναι και αυτός παρόμοιος με τον UCS αλλά είναι ποιο ‘’έξυπνος’’.
 Ο Α* χρησιμοποιεί μία συνάρτηση για να υπολογίσει καλύτερα το priority. Με τον τύπο f(n)
@@ -47,7 +67,7 @@ g(n) = το κόστος που είχαμε πριν
 ήμασταν στο ίδιο σημείο με μικρότερο συνολικό κόστος. Άρα άσκοπα θα προσωρήσουμε.
 Οπότε πάμε στην επόμενη επανάληψη.
 
-## **QUESTION 5**
+## QUESTION 5
 
 Στο initialize φτιάχνουμε μία λίστα με tuples για να κρατήσουμε τις μια
 μη visited γωνίες.
@@ -61,14 +81,14 @@ state να μην έχει δίπλα του στο tuple γωνίες(σημα�
 κοιτάξουμε αν κάποιες από αυτές τις κινήσεις καταλήγει σε γωνία για να
 την αφαιρέσουμε.
 
-## **QUESTION 6**
+## QUESTION 6
 
 Επιλέγω σαν heuristic την manhattanDistance στο util.py.
 Αν πάω στην ποιο κοντινή μου γωνία μετά απλά μπορώ να ακολουθήσω την μικρότερη
 πλευρά για να πάω στην άλλη γωνία και μετά απλά ακολουθώ τις πλευρές αν δεν υπήρχαν
 οι τοίχοι να με εμποδίσουν( αυτή η λογική είναι η καλύτερη περίπτωση).
 
-## **QUESTION 7**
+## QUESTION 7
 
 Χρησιμοποιώ την mazeDistance στο searchAgents.py.
 Θα βρούμε απλά την απόσταση μας από κάθε φαγητό και θα επιστρέψουμε το μέγιστο
@@ -76,7 +96,7 @@ state να μην έχει δίπλα του στο tuple γωνίες(σημα�
 το μεγαλύτερο που είναι δυνατόν. Η ουρά θα βγάλει τον κόμβο με το μικρότερο αυτών τον
 μεγαλύτερων άρα κάθε φορά κάνουμε το καλύτερο από τις χειρότερες επιλογές.
 
-## **QUESTION 8**
+## QUESTION 8
 
 Απλά καλούμε τον astar(με το πρόβλημα) για να βρεί το μονοπάτι για το ποιο κοντινό
 φαγητό. Δεν έχει σημασία ποια συνάρτηση θα καλέσουμε Α* ή UCS ή BFS.
