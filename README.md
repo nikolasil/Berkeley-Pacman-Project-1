@@ -4,6 +4,10 @@
 
 > There are comments all over my code if there is something that i didn't covered here.
 
+[Project 1: Search](https://inst.eecs.berkeley.edu/~cs188/sp19/project1.html)
+
+> **Run command:** python ./autograder.py
+
 ## QUESTION 1
 
 I created the DFS algorithm using stack because DFS logic is LIFO (LAST-IN FIRST-OUT).
