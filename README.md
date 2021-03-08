@@ -2,6 +2,8 @@
 
 ---
 
+> There are comments all over my code if there is something that i didn't covered here.
+
 ## QUESTION 1
 
 I created the DFS algorithm using stack because DFS logic is LIFO (LAST-IN FIRST-OUT).
